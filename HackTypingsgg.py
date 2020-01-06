@@ -2,6 +2,7 @@ import re
 import time
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.keys import Keys
+
 # Set the number of words for the typings.gg test
 def setTestLength(n, page):
   if n == 10:
@@ -50,7 +51,7 @@ def getWordList(page):
   soup = reparseHTML(page)
   word_list = str(soup.find(id='text-display'))
   word_list = re.search('(?<=\"highlight\">)(.*)(?=</div>)', word_list).group()
-  word_list = re.sub('</span>','',word_list)
+  word_list = re.sub(' </span>','',word_list)
   word_list = re.split('<span>',word_list)
   return word_list
 
@@ -61,7 +62,8 @@ def typeFast(page):
   word_list = getWordList(page)
   for i in word_list:
     type_here.send_keys(i)
-    time.sleep(0.100)
+    time.sleep(0.175)
+    type_here.send_keys(' ')
 
 def typeSuperFast(page):
   soup = reparseHTML(page)
