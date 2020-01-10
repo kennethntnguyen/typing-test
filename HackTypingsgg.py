@@ -1,3 +1,10 @@
+# Note: This module was created for learning purposes.
+# The following module contains functions used to automatically perform the typing test from
+# the website "https://typings.gg".
+
+# Note: Functions that have "page" in their parameters require the user to pass a Selenium webdriver
+# object in order for the function to operate as intended.
+
 import re
 import time
 from bs4 import BeautifulSoup
@@ -18,13 +25,13 @@ def setTestLength(n, page):
   else:
     print("The typing test doesn't support those number of words.")
 
-# This reparses the HTML - this is needed in order to extract the new word list
+# Reparses the HTML - this is needed in order to extract the current sequence of words
 def reparseHTML(page):
   html = page.execute_script("return document.documentElement.outerHTML")
   soup = BeautifulSoup(html, 'html.parser')
   return soup
 
-# Function that gets the WPM results
+# Gets the WPM results from the page
 def getWPM(page):
   soup = reparseHTML(page)
   wpm = str(soup.find(id='right-wing'))
@@ -46,8 +53,8 @@ def redo(page):
   type_here.send_keys(Keys.TAB)
   redo.send_keys(Keys.ENTER)
 
-# Function that prints the list of words in the text display
-def getWordList(page):
+# Prints the list of words in the text display
+def printWordList(page):
   soup = reparseHTML(page)
   word_list = str(soup.find(id='text-display'))
   word_list = re.search('(?<=\"highlight\">)(.*)(?=</div>)', word_list).group()
@@ -55,6 +62,7 @@ def getWordList(page):
   word_list = re.split('<span>',word_list)
   return word_list
 
+# Performs the typing test word by word - sends each word in whole at once
 def typeFast(page):
   soup = reparseHTML(page)
   # Finds the input bar for typing
@@ -65,6 +73,7 @@ def typeFast(page):
     time.sleep(0.175)
     type_here.send_keys(' ')
 
+# Performs the typing test by sending the entire sequence of words for the current test
 def typeSuperFast(page):
   soup = reparseHTML(page)
   # Finds the input bar for typing
