@@ -64,7 +64,7 @@ def getWordList(page):
   return word_list
 
 # Performs the typing test realistically letter by letter with delay between each kestroke
-def typeNormally(page):
+def typeNormally(wpm, page):
   soup = __reparseHTML(page)
   # Finds the input bar for typing
   type_here = page.find_element_by_id('input-field')
