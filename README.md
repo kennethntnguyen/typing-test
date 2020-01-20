@@ -2,7 +2,11 @@
 
 Through the use of BeautifulSoup, Selenium and a FireFox webdriver I was able to hack the typing test to gain a WPM advantage.
 
-# hack_typingsgg Module:
+## Requirements
+* Selenium
+* Beautiful Soup
+
+## hack_typingsgg Module
 
 Function Name | Description
 --------------|------------
@@ -14,8 +18,11 @@ typeNormally(wpm, page) | Automates the typing test using the "realistic_typing.
 typeFast(page) | Automates the typing test by sending words as a whole one by one from "word_list."
 typeSuperFast(page) | Automates the typing test by sending the whole word list at once.
 
-# realistic_typing Module:
+## realistic_typing Module
 
 Function Name | Description
 --------------|------------
 delayedTyping(word_list, element) | Set the delay between each keystroke to make the typing more natural and humanlike.
+
+## typingsgg_test_firefox Script
+This is an example of a script that opens a FireFox browser and automates a typing test.
