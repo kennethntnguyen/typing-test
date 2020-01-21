@@ -26,12 +26,6 @@ def setTestLength(n, page):
   else:
     print("The typing test doesn't support those number of words.")
 
-# Reparses the HTML - this is needed in order to extract the current sequence of words
-def __reparseHTML(page):
-  html = page.execute_script("return document.documentElement.outerHTML")
-  soup = BeautifulSoup(html, 'html.parser')
-  return soup
-
 # Gets the WPM results from the page
 def getWPM(page):
   soup = __reparseHTML(page)
@@ -40,7 +34,7 @@ def getWPM(page):
   # Returns the part of the string that matches
   wpm = wpm.group()
   if(wpm == 'XX'):
-    wpm = 'Typing test is not done.'
+    wpm = 'Typing test is not done. Run automated typing test first.'
   else:
     wpm = int(wpm)
   return wpm
@@ -69,7 +63,7 @@ def typeNormally(wpm, page):
   # Finds the input bar for typing
   type_here = page.find_element_by_id('input-field')
   word_list = getWordList(page)
-  rt.delayedTyping(word_list, type_here)
+  rt.delayedTyping(wpm, word_list, type_here)
 
 # Performs the typing test word by word - sends each word in whole at once
 def typeFast(page):
@@ -89,3 +83,9 @@ def typeSuperFast(page):
   type_here = page.find_element_by_id('input-field')
   word_list = getWordList(page)
   type_here.send_keys(word_list)
+
+# Reparses the HTML - this is needed in order to extract the current sequence of words
+def __reparseHTML(page):
+    html = page.execute_script("return document.documentElement.outerHTML")
+    soup = BeautifulSoup(html, 'html.parser')
+    return soup

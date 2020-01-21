@@ -17,12 +17,12 @@ pg = webdriver.Firefox()
 # Navigates to the specified web page
 pg.get(url)
 
-# Set the typing test to 100 words
-h.setTestLength(100, pg)
+# Set the typing test to 100 words (50 words by default)
+h.setTestLength(25, pg)
 
 # Runs the test 5 times and printing the WPM results each time
 for i in range(5):
-  h.typeNormally(pg)
+  h.typeNormally(150,pg)
   h.redo(pg)
   print("WPM:", h.getWPM(pg))
 
