@@ -25,4 +25,4 @@ Function Name | Description
 delayedTyping(word_list, element) | Set the delay between each keystroke to make the typing more natural and humanlike.
 
 ## typingsgg_test_firefox Script
-This is an example of a script that opens a FireFox browser and automates a typing test.
+An example of a script that opens a FireFox browser and automates a typing test 5 times and prints the WPM results each time.

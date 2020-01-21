@@ -8,18 +8,23 @@ url = 'https://typings.gg/'
 #options = Options()
 #options.headless = True
 
-# This opens up a Firefox browser
-#pg = webdriver.Firefox(options=options)
+# This opens up a Firefox browser in headless mode
+# pg = webdriver.Firefox(options=options)
 
+# This opens up a Firefox browser
 pg = webdriver.Firefox()
+
 # Navigates to the specified web page
 pg.get(url)
 
+# Set the typing test to 100 words
 h.setTestLength(100, pg)
 
+# Runs the test 5 times and printing the WPM results each time
 for i in range(5):
   h.typeNormally(pg)
   h.redo(pg)
   print("WPM:", h.getWPM(pg))
 
+# Closes the FireFox browser
 pg.quit()
