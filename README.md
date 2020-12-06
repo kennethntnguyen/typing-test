@@ -1,6 +1,6 @@
 # Hacking the Typing Test
 
-Through the use of BeautifulSoup, Selenium and a FireFox webdriver I was able to hack the typing test to gain a WPM advantage. Right now this only supports the typing test at https://typings.gg.
+Through the use of BeautifulSoup, Selenium and a FireFox webdriver I was able to hack the typing test. The hack gives you the ability to automate the typing test at any WPM. Right now this only supports the typing test at https://typings.gg.
 
 ## Requirements
 * Selenium
